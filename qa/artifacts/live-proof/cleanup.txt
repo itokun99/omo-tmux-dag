@@ -1,0 +1,1 @@
+live proof: pane %19 (DAG · 01a0a8f5) killed with tmux kill-pane; tmux window 0 back to its single OmO pane %0; leftover DAG panes across all windows: 0; runtime state files under ~/.omo/agent/tmux-dag/ kept (extension memory).

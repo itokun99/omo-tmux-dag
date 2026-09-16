@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "sessionId": "qa-tmux-dag-session",
+  "connected": false,
+  "language": "en",
+  "updatedAt": "2026-09-16T07:00:42.583Z",
+  "runs": [
+    {
+      "id": "dag_qa_checkpoint",
+      "name": "dag_qa_checkpoint",
+      "status": "running",
+      "createdAt": "2026-09-06T01:28:18.600Z",
+      "updatedAt": "2026-09-06T01:55:44.466Z",
+      "nodes": [
+        {
+          "id": "build",
+          "label": "build",
+          "state": "completed",
+          "attempt": 1,
+          "taskId": "st_qa1",
+          "error": ""
+        },
+        {
+          "id": "test",
+          "label": "test",
+          "state": "running",
+          "attempt": 1,
+          "taskId": "st_qa2",
+          "error": ""
+        },
+        {
+          "id": "ship",
+          "label": "ship",
+          "state": "pending",
+          "attempt": 0,
+          "error": ""
+        }
+      ],
+      "edges": [
+        {
+          "from": "build",
+          "to": "test"
+        },
+        {
+          "from": "test",
+          "to": "ship"
+        }
+      ]
+    },
+    {
+      "id": "dag_demo",
+      "name": "Integration check · example DAG",
+      "status": "running",
+      "createdAt": "2026-09-05T07:00:00Z",
+      "updatedAt": "2026-09-05T07:00:01Z",
+      "nodes": [
+        {
+          "id": "analyze",
+          "label": "Analyze",
+          "state": "completed",
+          "attempt": 1,
+          "error": ""
+        },
+        {
+          "id": "server",
+          "label": "Server",
+          "state": "running",
+          "attempt": 1,
+          "error": ""
+        },
+        {
+          "id": "ui",
+          "label": "UI",
+          "state": "running",
+          "attempt": 1,
+          "error": ""
+        },
+        {
+          "id": "integrate",
+          "label": "Integrate",
+          "state": "pending",
+          "attempt": 0,
+          "error": ""
+        },
+        {
+          "id": "verify",
+          "label": "Verify",
+          "state": "pending",
+          "attempt": 0,
+          "error": ""
+        }
+      ],
+      "edges": [
+        {
+          "from": "analyze",
+          "to": "server"
+        },
+        {
+          "from": "analyze",
+          "to": "ui"
+        },
+        {
+          "from": "server",
+          "to": "integrate"
+        },
+        {
+          "from": "ui",
+          "to": "integrate"
+        },
+        {
+          "from": "integrate",
+          "to": "verify"
+        }
+      ]
+    }
+  ],
+  "tasks": []
+}

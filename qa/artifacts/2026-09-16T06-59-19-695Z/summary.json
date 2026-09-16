@@ -1,0 +1,25 @@
+{
+  "sessionId": "qa-tmux-dag-session",
+  "session": "omo-tmux-dag-qa",
+  "artifacts": "/Users/aleph/Projects/omo-tmux-dag/qa/artifacts/2026-09-16T06-59-19-695Z",
+  "results": [
+    {
+      "name": "scratch tmux session starts with one host pane",
+      "ok": true,
+      "detail": "%10"
+    },
+    {
+      "name": "extension registered the dag-pane command under tmux",
+      "ok": true,
+      "detail": "dag-pane"
+    },
+    {
+      "name": "qa run completed without throwing",
+      "ok": false,
+      "detail": "timed out waiting for a second pane titled DAG · <session> (last panes: %10\tAleph-T4LVH6s-MacBook-Pro.local\t1\t129x50 | %11\tOmO DAG\t0\t70x50; last: false)"
+    }
+  ],
+  "passed": 2,
+  "failed": 1,
+  "cleanup": "session omo-tmux-dag-qa killed; 1 viewer pane(s) killed; scratch /Users/aleph/Projects/omo-tmux-dag/qa/artifacts/2026-09-16T06-59-19-695Z/tmp removed; leftover panes: 0"
+}

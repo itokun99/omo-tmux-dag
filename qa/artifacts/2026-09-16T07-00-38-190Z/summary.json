@@ -1,0 +1,80 @@
+{
+  "sessionId": "qa-tmux-dag-session",
+  "session": "omo-tmux-dag-qa",
+  "artifacts": "/Users/aleph/Projects/omo-tmux-dag/qa/artifacts/2026-09-16T07-00-38-190Z",
+  "results": [
+    {
+      "name": "scratch tmux session starts with one host pane",
+      "ok": true,
+      "detail": "%16"
+    },
+    {
+      "name": "extension registered the dag-pane command under tmux",
+      "ok": true,
+      "detail": "dag-pane"
+    },
+    {
+      "name": "a DAG pane opened automatically",
+      "ok": true,
+      "detail": "%17\tDAG · qa-tmux-\t0\t70x50"
+    },
+    {
+      "name": "DAG pane title carries the session prefix",
+      "ok": true,
+      "detail": "DAG · qa-tmux-"
+    },
+    {
+      "name": "focus stays in the conversation pane",
+      "ok": true,
+      "detail": "%16\tAleph-T4LVH6s-MacBook-Pro.local\t1\t129x50 | %17\tDAG · qa-tmux-\t0\t70x50"
+    },
+    {
+      "name": "DAG pane takes about 35% of the 200-column window",
+      "ok": true,
+      "detail": "%17\tDAG · qa-tmux-\t0\t70x50"
+    },
+    {
+      "name": "viewer renders the restored checkpoint graph",
+      "ok": true,
+      "detail": "2741 bytes captured"
+    },
+    {
+      "name": "a second snapshot reuses the pane instead of splitting again",
+      "ok": true,
+      "detail": "%16\tAleph-T4LVH6s-MacBook-Pro.local\t1\t129x50 | %17\tDAG · qa-tmux-\t0\t70x50"
+    },
+    {
+      "name": "t switches the viewer to the tasks view",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tab/Space fold a node and persist the view preference",
+      "ok": true,
+      "detail": "[[\"[\\\"dag_qa_checkpoint\\\",\\\"test\\\"]\",false]]"
+    },
+    {
+      "name": "q closes the viewer and its pane",
+      "ok": true,
+      "detail": "%16\tAleph-T4LVH6s-MacBook-Pro.local\t1\t200x50"
+    },
+    {
+      "name": "a later snapshot does not reopen a pane the user closed",
+      "ok": true,
+      "detail": "%16\tAleph-T4LVH6s-MacBook-Pro.local\t1\t200x50"
+    },
+    {
+      "name": "/dag-pane reopens the pane",
+      "ok": true,
+      "detail": "%18\tDAG · qa-tmux-\t0\t70x50"
+    },
+    {
+      "name": "viewer state names the session and marks the extension disconnected after shutdown",
+      "ok": true,
+      "detail": "runs=2 connected=false"
+    }
+  ],
+  "passed": 14,
+  "failed": 0,
+  "cleanup": "session omo-tmux-dag-qa killed; 1 viewer pane(s) killed; scratch /Users/aleph/Projects/omo-tmux-dag/qa/artifacts/2026-09-16T07-00-38-190Z/tmp removed; leftover panes: 0"
+}

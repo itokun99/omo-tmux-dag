@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>omo-tmux-dag capture</title>
+<link rel="stylesheet" href="vendor/xterm.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #11111b; }
+  #term { padding: 12px; }
+</style>
+</head>
+<body>
+<div id="term"></div>
+<script src="vendor/xterm.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  window.__term = new Terminal({
+    convertEol: true,
+    fontSize: 14,
+    fontFamily: 'SFMono-Regular, Menlo, monospace',
+    theme: { background: '#11111b', foreground: '#cdd6f4' },
+    cols: Number(params.get('cols') ?? 70),
+    rows: Number(params.get('rows') ?? 50),
+    scrollback: 500,
+  });
+  window.__term.open(document.getElementById('term'));
+  window.__render = text => new Promise(resolve => window.__term.write(text, () => resolve(true)));
+</script>
+</body>
+</html>

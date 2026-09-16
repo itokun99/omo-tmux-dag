@@ -1,0 +1,4 @@
+Failing-first proof for the viewer pane-title fix (captured by qa/live.mjs before the change):
+run 2026-09-16T06-59-19-695Z / 06-59-46-912Z summary.json -> FAIL "timed out waiting for a second pane titled DAG · <session>"
+observed: '%11\tOmO DAG\t0\t70x50' (the viewer's OSC title overwrote the extension's select-pane -T title).
+Fix: viewer sets its own 'DAG · <session8>' title. After the fix the same check passes (07-00-38-190Z run).

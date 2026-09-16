@@ -1,0 +1,79 @@
+name: publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Pack and validate without uploading to npm
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Show toolchain
+        run: node --version && npm --version
+
+      - run: npm ci
+
+      - run: npm test
+
+      - name: Build and pack
+        run: npm pack --dry-run
+
+      - name: Decide whether to publish
+        id: decide
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "release" ]; then
+            tag="${GITHUB_REF_NAME#v}"
+            version="$(node -p "require('./package.json').version")"
+            if [ "$tag" != "$version" ]; then
+              echo "::error::tag $GITHUB_REF_NAME does not match package.json version $version"
+              exit 1
+            fi
+            echo "dry=false" >> "$GITHUB_OUTPUT"
+            if npm view "omo-tmux-dag@$version" version >/dev/null 2>&1; then
+              echo "::notice::omo-tmux-dag@$version is already on npm; nothing to publish"
+              echo "publish=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "publishing omo-tmux-dag@$version"
+              echo "publish=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "dry=$([[ "${INPUT_DRY_RUN}" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+
+      - name: Publish to npm
+        if: steps.decide.outputs.publish == 'true' && steps.decide.outputs.dry == 'false'
+        run: npm publish --access public --provenance
+
+      - name: Dry run
+        if: steps.decide.outputs.publish == 'true' && steps.decide.outputs.dry == 'true'
+        run: npm publish --dry-run --access public
+
+      - name: Summary
+        run: |
+          {
+            echo "| field | value |"
+            echo "| --- | --- |"
+            echo "| event | ${GITHUB_EVENT_NAME} |"
+            echo "| version | $(node -p "require('./package.json').version") |"
+            echo "| publish | ${{ steps.decide.outputs.publish }} |"
+            echo "| dry run | ${{ steps.decide.outputs.dry }} |"
+          } >> "$GITHUB_STEP_SUMMARY"

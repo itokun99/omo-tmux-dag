@@ -128,6 +128,35 @@ keys, close) and writes captures under `qa/artifacts/`. Rendering a capture to P
 (`bun qa/screenshot.mjs <capture.ansi> <out.png>`) downloads xterm.js 5.5 (MIT) into `qa/vendor/` on
 first use.
 
+## Releasing
+
+Publishing is automated by [`.github/workflows/publish.yml`](.github/workflows/publish.yml): publishing a
+GitHub release runs the test suite, checks that the tag matches `package.json`, skips the upload when
+that version is already on npm, and otherwise publishes with
+[provenance](https://docs.npmjs.com/generating-provenance-statements) through npm trusted publishing
+(OIDC — no token stored in the repository).
+
+One-time setup on npmjs.com, on the package page → **Settings** → **Trusted Publisher** → **GitHub Actions**:
+
+| Field | Value |
+| --- | --- |
+| Organization or user | `itokun99` |
+| Repository | `omo-tmux-dag` |
+| Workflow filename | `publish.yml` |
+| Environment | leave empty |
+
+Then release:
+
+```bash
+npm version patch --no-git-tag-version
+# commit the bump, then on GitHub: Releases → Draft a new release → tag vX.Y.Z → Publish
+```
+
+`Actions → publish → Run workflow` performs a dry run (`npm publish --dry-run`) without uploading; set
+`dry_run` to false there to publish without a release. If trusted publishing is unavailable on your
+account, drop `--provenance`, remove `id-token: write`, and pass a granular token
+(`env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }`) in the publish step instead.
+
 ## License
 
 MIT. Portions derived from omo-herdr-dag v1.3.1 — see `NOTICE` and `LICENSE.upstream`.

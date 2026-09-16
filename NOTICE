@@ -1,0 +1,20 @@
+omo-tmux-dag
+============
+
+This package is a tmux port of omo-herdr-dag v1.3.1
+(https://github.com/jc01rho/omo-herdr-dag), which is MIT licensed.
+
+Adapted from that project (with permission of the MIT license):
+  extension.mjs, src/controller.mjs, src/viewer.mjs, src/render.mjs,
+  src/model.mjs, src/task-data.mjs, src/view-state.mjs, src/storage.mjs,
+  src/i18n.mjs, src/runtime.mjs, scripts/install.mjs, scripts/build.mjs,
+  bin/omo-tmux-dag.mjs, test fixtures.
+
+Principal changes: the Herdr pane adapter (src/herdr.mjs) is replaced by a tmux
+adapter (src/tmux.mjs); the activation guard reads $TMUX/$TMUX_PANE instead of
+Herdr environment variables; the viewer closes its own pane with
+`tmux kill-pane` and names its tmux pane `DAG · <session>`; installation targets
+`~/.omo/agent/tmux-dag`.
+
+The upstream license text is retained in LICENSE.upstream. This package is not
+affiliated with or endorsed by the omo-herdr-dag maintainers.

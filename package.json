@@ -1,0 +1,45 @@
+{
+  "name": "omo-tmux-dag",
+  "version": "0.1.0",
+  "description": "Live OmO workflow DAGs in a tmux side pane.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "omo-tmux-dag": "bin/omo-tmux-dag.mjs"
+  },
+  "exports": {
+    ".": "./dist/extension.mjs"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test --test-isolation=none test/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "qa": "node qa/live.mjs",
+    "check": "npm test && npm run build",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "omo",
+    "tmux",
+    "dag",
+    "tui",
+    "workflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itokun99/omo-tmux-dag.git"
+  },
+  "homepage": "https://github.com/itokun99/omo-tmux-dag#readme",
+  "bugs": {
+    "url": "https://github.com/itokun99/omo-tmux-dag/issues"
+  }
+}

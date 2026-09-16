@@ -65,7 +65,12 @@ jobs:
 
       - name: Dry run
         if: steps.decide.outputs.publish == 'true' && steps.decide.outputs.dry == 'true'
-        run: npm publish --dry-run --access public
+        run: |
+          # A dry run still checks the registry, so validate a throwaway version and
+          # leave the committed version untouched.
+          npm pkg set version="0.0.0-dryrun.${GITHUB_RUN_ID}"
+          npm publish --dry-run --access public
+          echo "::notice::dry run validated the tarball; the committed version is unchanged"
 
       - name: Summary
         run: |

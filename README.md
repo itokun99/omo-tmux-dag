@@ -1,6 +1,7 @@
 # omo-tmux-dag
 
 [![npm version](https://img.shields.io/npm/v/omo-tmux-dag.svg)](https://www.npmjs.com/package/omo-tmux-dag)
+[![GitHub release](https://img.shields.io/github/v/release/itokun99/omo-tmux-dag)](https://github.com/itokun99/omo-tmux-dag/releases)
 [![npm license](https://img.shields.io/npm/l/omo-tmux-dag.svg)](LICENSE)
 [![node](https://img.shields.io/node/v/omo-tmux-dag.svg)](package.json)
 

@@ -1,6 +1,15 @@
 # omo-tmux-dag
 
+[![npm version](https://img.shields.io/npm/v/omo-tmux-dag.svg)](https://www.npmjs.com/package/omo-tmux-dag)
+[![npm license](https://img.shields.io/npm/l/omo-tmux-dag.svg)](LICENSE)
+[![node](https://img.shields.io/node/v/omo-tmux-dag.svg)](package.json)
+
 **Live OmO workflow DAGs in a tmux side pane.**
+
+![An OmO session on the left with the DAG pane on the right, showing a completed Smoke → Confirm workflow, its dependencies, node details, and the connection footer](https://raw.githubusercontent.com/itokun99/omo-tmux-dag/main/docs/screenshot-dag-pane.png)
+
+*A real session: the conversation keeps the left pane while the DAG pane follows the workflow — node
+states, dependencies, node details, and connection status beside it.*
 
 `omo-tmux-dag` is an [OmO](https://github.com/code-yeongyu/oh-my-openagent) extension that opens a
 dedicated TUI pane in tmux when a workflow DAG appears — `mass-ulw`, `/dag`, or any
@@ -34,6 +43,19 @@ Run OmO inside a tmux pane; the extension is inert anywhere else (no Herdr, no b
 
 ## Install
 
+### From npm
+
+```bash
+npx omo-tmux-dag@latest install --dry-run
+npx omo-tmux-dag@latest install
+```
+
+Or install the CLI globally — `npm install -g omo-tmux-dag`, then `omo-tmux-dag install`.
+Arguments: `--agent-dir PATH` (default `$OMO_CODING_AGENT_DIR`, `$SENPI_CODING_AGENT_DIR`, then
+`~/.omo/agent`), `--lang en|ko` (default `en`), `--dry-run`.
+
+### From source
+
 ```bash
 git clone https://github.com/itokun99/omo-tmux-dag.git
 cd omo-tmux-dag
@@ -55,9 +77,6 @@ The installer writes:
 Start a new OmO session inside tmux, or run `/reload`. The first DAG snapshot opens the viewer
 automatically. `/dag-pane` opens an empty viewer while waiting for a DAG, or reopens a pane you
 closed.
-
-Options: `--agent-dir PATH` (default `$OMO_CODING_AGENT_DIR`, `$SENPI_CODING_AGENT_DIR`, then
-`~/.omo/agent`), `--lang en|ko` (default `en`), `--dry-run`.
 
 To uninstall, delete `~/.omo/agent/extensions/tmux-dag.js` and `~/.omo/agent/tmux-dag/`, then run
 `/reload`.

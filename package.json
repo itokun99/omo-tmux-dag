@@ -1,6 +1,6 @@
 {
   "name": "omo-tmux-dag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Live OmO workflow DAGs in a tmux side pane.",
   "license": "MIT",
   "type": "module",
